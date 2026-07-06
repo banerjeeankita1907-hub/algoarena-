@@ -1,0 +1,281 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f4f8;
+  color: #1c3c34;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  background: #1e1e2e;
+  color: #cdd6f4;
+}
+
+#app {
+  max-width: 650px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.2rem;
+  background: #58cc02;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+body.dark header {
+  background: #4a9e00;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.streak, .xp {
+  font-weight: bold;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin-right: 0.6rem;
+}
+
+.hearts {
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+}
+
+/* Main views */
+.view {
+  display: none;
+  padding: 1.2rem;
+  flex: 1;
+}
+
+.view.active {
+  display: block;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  border-radius: 14px;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  margin: 0.3rem 0;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn.primary {
+  background: #58cc02;
+  color: white;
+  box-shadow: 0 4px 0 #46a302;
+  width: 100%;
+}
+
+.btn.primary:hover {
+  background: #4aa600;
+}
+
+.btn.secondary {
+  background: #e5e5e5;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+body.dark .btn.secondary {
+  background: #313244;
+  color: #cdd6f4;
+}
+
+/* Skill tree */
+#skills-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.skill-node {
+  background: white;
+  border-radius: 18px;
+  padding: 1.2rem 1.5rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.skill-node:hover {
+  background: #f0fff0;
+}
+
+.skill-node.locked {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #f5f5f5;
+}
+
+body.dark .skill-node {
+  background: #313244;
+}
+
+.skill-node .skill-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.skill-node .skill-icon {
+  font-size: 2rem;
+  margin-right: 0.8rem;
+}
+
+.skill-node .skill-progress {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* Lessons */
+.lesson-item {
+  background: white;
+  border-radius: 14px;
+  padding: 0.9rem 1.2rem;
+  margin: 0.6rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.lesson-item.completed {
+  border-left: 5px solid #58cc02;
+}
+
+body.dark .lesson-item {
+  background: #313244;
+}
+
+.lesson-item .lesson-status {
+  font-size: 1.3rem;
+}
+
+/* Code editor */
+#code-editor {
+  height: 240px;
+  border: 1px solid #ccc;
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 1rem 0;
+  font-size: 15px;
+}
+
+#test-results {
+  background: #f9f9f9;
+  border-radius: 14px;
+  padding: 0.9rem;
+  min-height: 3rem;
+  margin-top: 0.8rem;
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+
+body.dark #test-results {
+  background: #181825;
+}
+
+/* Footer XP bar */
+footer {
+  background: white;
+  padding: 0.7rem 1.2rem;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+}
+
+body.dark footer {
+  background: #1e1e2e;
+  border-color: #444;
+}
+
+.xp-bar-container {
+  flex: 1;
+  background: #e0e0e0;
+  border-radius: 12px;
+  height: 14px;
+  overflow: hidden;
+}
+
+.xp-bar {
+  height: 100%;
+  width: 0%;
+  background: #ffc800;
+  border-radius: 12px;
+  transition: width 0.35s ease;
+}
+
+/* Level‑up popup */
+#level-up-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffd700;
+  color: #1c3c34;
+  padding: 1.2rem 2.5rem;
+  border-radius: 40px;
+  font-size: 2rem;
+  font-weight: 900;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.popup-visible {
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+
+/* Dark mode adjustments for code mirror */
+body.dark .CodeMirror {
+  background: #282a36;
+  color: #f8f8f2;
+}
