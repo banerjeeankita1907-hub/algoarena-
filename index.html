@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlgoArena – Master Code</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- CodeMirror CSS + Monokai theme -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/monokai.min.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Header with mode toggle -->
+    <header>
+      <div class="header-left">
+        <span class="logo">⚔️ AlgoArena</span>
+        <span class="streak">🔥 <span id="streak-count">0</span></span>
+        <span class="xp">⭐ <span id="xp-value">0</span> XP</span>
+      </div>
+      <div class="header-right">
+        <button id="theme-toggle" class="icon-btn">🌙</button>
+        <span class="hearts" id="hearts-container"></span>
+      </div>
+    </header>
+
+    <!-- Main views -->
+    <main id="view">
+      <!-- Skill tree (default) -->
+      <section id="skill-tree" class="view active">
+        <h1>Choose a Skill</h1>
+        <div id="skills-container"></div>
+      </section>
+
+      <!-- Lesson list for a chosen skill -->
+      <section id="lesson-list" class="view">
+        <button id="back-to-tree" class="btn secondary">&larr; Back</button>
+        <h2 id="lesson-skill-title"></h2>
+        <div id="lessons-container"></div>
+      </section>
+
+      <!-- Problem view with editor -->
+      <section id="problem-view" class="view">
+        <button id="back-to-lessons" class="btn secondary">&larr; Back</button>
+        <h2 id="problem-title"></h2>
+        <p id="problem-description"></p>
+        <div id="code-editor"></div>
+        <button id="run-code" class="btn primary">▶ Run Code</button>
+        <div id="test-results"></div>
+      </section>
+    </main>
+
+    <!-- Duolingo‑style XP bar at the bottom -->
+    <footer id="bottom-bar">
+      <span>Level <span id="user-level">1</span></span>
+      <div class="xp-bar-container">
+        <div class="xp-bar" id="xp-bar"></div>
+      </div>
+      <span id="xp-next-level"></span>
+    </footer>
+
+    <!-- Level-up popup (hidden by default) -->
+    <div id="level-up-popup" class="popup-hidden">
+      <span>🎉 LEVEL UP!</span>
+    </div>
+  </div>
+
+  <!-- Libraries from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+  <!-- Our game files -->
+  <script src="challenges.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
