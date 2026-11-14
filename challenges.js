@@ -124,7 +124,7 @@ const challenges = [
   // ---------- ALGORITHMS ----------
   { id: "binary-search", skill: "algorithms", title: "Binary Search",
     desc: "Write binarySearch(sorted, target) and return the target index or -1. The input array is sorted in ascending order.",
-    starter: "function binarySearch(sorted, target) {\\n  // your code here\\n}",
+    starter: "function binarySearch(sorted, target) {\n  // your code here\n}",
     tests: [
       { input: [[1, 3, 5, 7, 9], 7], expected: 3 },
       { input: [[1, 3, 5, 7, 9], 2], expected: -1 },
@@ -134,7 +134,7 @@ const challenges = [
   },
   { id: "two-sum", skill: "algorithms", title: "Two Sum",
     desc: "Return the first pair of indices [i, j] with i < j whose values sum to target. Return [] if no pair exists.",
-    starter: "function twoSum(nums, target) {\\n  // your code here\\n}",
+    starter: "function twoSum(nums, target) {\n  // your code here\n}",
     tests: [
       { input: [[2, 7, 11, 15], 9], expected: [0, 1] },
       { input: [[3, 2, 4], 6], expected: [1, 2] },
@@ -143,7 +143,7 @@ const challenges = [
   },
   { id: "merge-sorted-arrays", skill: "algorithms", title: "Merge Sorted Arrays",
     desc: "Merge two sorted number arrays into one sorted array. Do not mutate either input.",
-    starter: "function mergeSortedArrays(a, b) {\\n  // your code here\\n}",
+    starter: "function mergeSortedArrays(a, b) {\n  // your code here\n}",
     tests: [
       { input: [[1, 3, 5], [2, 4, 6]], expected: [1, 2, 3, 4, 5, 6] },
       { input: [[], [1, 2]], expected: [1, 2] },
@@ -152,7 +152,7 @@ const challenges = [
   },
   { id: "valid-parentheses", skill: "algorithms", title: "Valid Parentheses",
     desc: "Return true when every bracket is correctly opened and closed. Support (), [] and {} only.",
-    starter: "function validParentheses(text) {\\n  // your code here\\n}",
+    starter: "function validParentheses(text) {\n  // your code here\n}",
     tests: [
       { input: ["()[]{}"], expected: true },
       { input: ["([{}])"], expected: true },
@@ -163,7 +163,7 @@ const challenges = [
   },
   { id: "longest-unique-substring", skill: "algorithms", title: "Longest Unique Substring",
     desc: "Return the length of the longest substring containing no repeated characters.",
-    starter: "function longestUniqueSubstring(text) {\\n  // your code here\\n}",
+    starter: "function longestUniqueSubstring(text) {\n  // your code here\n}",
     tests: [
       { input: ["abcabcbb"], expected: 3 },
       { input: ["bbbbb"], expected: 1 },
@@ -174,7 +174,7 @@ const challenges = [
   // ---------- GRAPHS ----------
   { id: "breadth-first-search", skill: "graphs", title: "Breadth-First Search Path",
     desc: "Given an adjacency-list object, return the shortest unweighted path from start to target as an array of node names. Return [] when unreachable.",
-    starter: "function shortestPath(graph, start, target) {\\n  // your code here\\n}",
+    starter: "function shortestPath(graph, start, target) {\n  // your code here\n}",
     tests: [
       { input: [{ A: ["B", "C"], B: ["D"], C: ["D"], D: [] }, "A", "D"], expected: ["A", "B", "D"] },
       { input: [{ A: ["B"], B: [], C: [] }, "A", "C"], expected: [] },
@@ -183,7 +183,7 @@ const challenges = [
   },
   { id: "connected-components", skill: "graphs", title: "Connected Components",
     desc: "Count connected components in an undirected graph given as an adjacency-list object. Include isolated vertices.",
-    starter: "function countComponents(graph) {\\n  // your code here\\n}",
+    starter: "function countComponents(graph) {\n  // your code here\n}",
     tests: [
       { input: [{ A: ["B"], B: ["A"], C: ["D"], D: ["C"], E: [] }], expected: 3 },
       { input: [{ A: ["B"], B: ["A"] }], expected: 1 },
