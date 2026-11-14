@@ -119,8 +119,7 @@ const challenges = [
       { input: [1], expected: 1 },
       { input: [7], expected: 13 }
     ]
-  }
-
+  },
   // ---------- ALGORITHMS ----------
   { id: "binary-search", skill: "algorithms", title: "Binary Search",
     desc: "Write binarySearch(sorted, target) and return the target index or -1. The input array is sorted in ascending order.",
