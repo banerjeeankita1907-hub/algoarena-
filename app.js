@@ -19,22 +19,49 @@
     { id: "strings",  name: "Strings",  icon: "🔤", reqSkill: "basics", reqCount: 2 },
     { id: "arrays",   name: "Arrays",   icon: "📚", reqSkill: "strings", reqCount: 2 },
     { id: "objects",  name: "Objects",  icon: "🧩", reqSkill: "arrays", reqCount: 2 },
-    { id: "recursion",name: "Recursion",icon: "🔄", reqSkill: "objects", reqCount: 1 }
+    { id: "recursion",name: "Recursion",icon: "🔄", reqSkill: "objects", reqCount: 1 },
+    { id: "algorithms",name: "Algorithms",icon: "⚙️", reqSkill: "arrays", reqCount: 2 },
+    { id: "graphs",name: "Graphs",icon: "🕸️", reqSkill: "algorithms", reqCount: 2 }
   ];
 
   // ---------- LOAD / SAVE ----------
   function loadState() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      state = { ...state, ...JSON.parse(saved) };
-      // ensure nextHeartTime is a number
-      if (typeof state.nextHeartTime !== 'number') state.nextHeartTime = Date.now() + 5*60*1000;
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const saved = raw ? JSON.parse(raw) : null;
+      if (saved && typeof saved === "object" && !Array.isArray(saved)) {
+        state = { ...state, ...saved };
+      }
+    } catch (error) {
+      // A corrupted or unavailable local save should not prevent the app opening.
+      console.warn("Could not load saved progress; starting with a clean state.", error);
+      state = {
+        xp: 0, streak: 0, lastActiveDate: null, hearts: 5, maxHearts: 5,
+        nextHeartTime: Date.now() + 5*60*1000, completedLessons: [], theme: "light"
+      };
     }
+
+    state.xp = Number.isFinite(state.xp) ? Math.max(0, Math.floor(state.xp)) : 0;
+    state.streak = Number.isFinite(state.streak) ? Math.max(0, Math.floor(state.streak)) : 0;
+    state.maxHearts = 5;
+    state.hearts = Number.isFinite(state.hearts)
+      ? Math.max(0, Math.min(state.maxHearts, Math.floor(state.hearts))) : state.maxHearts;
+    state.lastActiveDate = typeof state.lastActiveDate === "string" ? state.lastActiveDate : null;
+    state.nextHeartTime = Number.isFinite(state.nextHeartTime)
+      ? state.nextHeartTime : Date.now() + 5*60*1000;
+    const validIds = new Set(challenges.map((challenge) => challenge.id));
+    state.completedLessons = Array.isArray(state.completedLessons)
+      ? [...new Set(state.completedLessons.filter((id) => validIds.has(id)))] : [];
+    state.theme = state.theme === "dark" ? "dark" : "light";
     updateStreak();
   }
 
   function saveState() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (error) {
+      console.warn("Could not save progress in this browser session.", error);
+    }
   }
 
   function updateStreak() {
@@ -283,7 +310,7 @@
               results.push({ passed: false, input: JSON.stringify(tc.input), expected: JSON.stringify(tc.expected), actual: err.toString(), error: true });
               continue;
             }
-            const passed = JSON.stringify(actual) === JSON.stringify(tc.expected);
+            const passed = JSON.stringify(normalize(actual)) === JSON.stringify(normalize(tc.expected));
             results.push({ passed, input: JSON.stringify(tc.input), expected: JSON.stringify(tc.expected), actual: JSON.stringify(actual) });
           }
         } catch (err) {
@@ -295,16 +322,29 @@
     const blob = new Blob([workerCode], { type: 'application/javascript' });
     const workerUrl = URL.createObjectURL(blob);
     const worker = new Worker(workerUrl);
-    worker.postMessage({ code, tests: currentChallenge.tests });
-    worker.onmessage = function(e) {
-      const results = e.data;
+    const timeLimitMs = 1500;
+    let settled = false;
+    const cleanup = () => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timeoutId);
+      worker.terminate();
       URL.revokeObjectURL(workerUrl);
-      displayResults(results);
+    };
+    const timeoutId = setTimeout(() => {
+      cleanup();
+      displayResults([{ passed: false, error: `Execution timed out after ${timeLimitMs} ms.` }]);
+    }, timeLimitMs);
+
+    worker.onmessage = function(e) {
+      cleanup();
+      displayResults(e.data);
     };
     worker.onerror = function(err) {
-      $testResults.textContent = 'Worker error: ' + err.message;
-      URL.revokeObjectURL(workerUrl);
+      cleanup();
+      displayResults([{ passed: false, error: 'Worker error: ' + err.message }]);
     };
+    worker.postMessage({ code, tests: currentChallenge.tests });
   }
 
   function displayResults(results) {
