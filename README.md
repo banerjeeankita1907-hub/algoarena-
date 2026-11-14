@@ -12,7 +12,7 @@ automated validation of the challenge catalogue.
 
 - Progressive skill tree: basics, strings, arrays, objects, recursion,
   algorithms and graphs.
-- 19 coding challenges with starter functions and visible test cases.
+- 20 coding challenges with starter functions and visible test cases.
 - Binary search, two-sum, merge sorted arrays, bracket validation,
   longest unique substring, breadth-first shortest path and connected components.
 - Browser-based CodeMirror editor and Web Worker execution.
