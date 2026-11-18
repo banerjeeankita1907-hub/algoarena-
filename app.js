@@ -21,7 +21,8 @@
     { id: "objects",  name: "Objects",  icon: "🧩", reqSkill: "arrays", reqCount: 2 },
     { id: "recursion",name: "Recursion",icon: "🔄", reqSkill: "objects", reqCount: 1 },
     { id: "algorithms",name: "Algorithms",icon: "⚙️", reqSkill: "arrays", reqCount: 2 },
-    { id: "graphs",name: "Graphs",icon: "🕸️", reqSkill: "algorithms", reqCount: 2 }
+    { id: "graphs", name: "Graphs", icon: "🕸️", reqSkill: "algorithms", reqCount: 2 },
+    { id: "dynamic-programming", name: "Dynamic Programming", icon: "🧠", reqSkill: "graphs", reqCount: 2 }
   ];
 
   // ---------- LOAD / SAVE ----------
