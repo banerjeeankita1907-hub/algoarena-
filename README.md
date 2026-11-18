@@ -12,9 +12,9 @@ automated validation of the challenge catalogue.
 
 - Progressive skill tree: basics, strings, arrays, objects, recursion,
   algorithms and graphs.
-- 20 coding challenges with starter functions and visible test cases.
+- 25 coding challenges with starter functions and visible test cases.
 - Binary search, two-sum, merge sorted arrays, bracket validation,
-  longest unique substring, breadth-first shortest path and connected components.
+  longest unique substring, breadth-first shortest path, connected components, Dijkstra's algorithm, lexicographic topological sorting, minimum coin change, longest increasing subsequence and edit distance.
 - Browser-based CodeMirror editor and Web Worker execution.
 - Local XP, levels, hearts, streaks and theme preference.
 - A 1.5-second execution deadline to stop accidental infinite loops.
