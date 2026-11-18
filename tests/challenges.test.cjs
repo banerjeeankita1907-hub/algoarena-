@@ -10,11 +10,11 @@ vm.runInNewContext(source + "\nglobalThis.__challengeCatalogue = challenges;", c
 const challenges = context.__challengeCatalogue;
 
 const knownSkills = new Set([
-  "basics", "strings", "arrays", "objects", "recursion", "algorithms", "graphs"
+  "basics", "strings", "arrays", "objects", "recursion", "algorithms", "graphs", "dynamic-programming"
 ]);
 
 test("challenge catalogue is non-empty and uses unique identifiers", () => {
-  assert.ok(challenges.length >= 19);
+  assert.ok(challenges.length >= 25);
   const ids = challenges.map((challenge) => challenge.id);
   assert.equal(new Set(ids).size, ids.length);
 });
@@ -37,7 +37,9 @@ test("new algorithm and graph topics are included", () => {
   for (const id of [
     "binary-search", "two-sum", "merge-sorted-arrays",
     "valid-parentheses", "longest-unique-substring",
-    "breadth-first-search", "connected-components"
+    "breadth-first-search", "connected-components", "dijkstra-shortest-path",
+    "lexicographic-topological-sort", "minimum-coin-change",
+    "longest-increasing-subsequence", "edit-distance"
   ]) {
     assert.ok(ids.has(id), `missing challenge: ${id}`);
   }
