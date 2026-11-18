@@ -189,4 +189,56 @@ const challenges = [
       { input: [{}], expected: 0 }
     ]
   }
+
+  { id: "dijkstra-shortest-path", skill: "graphs", title: "Dijkstra's Shortest Path",
+    desc: "Given a directed weighted adjacency list whose edges are [neighbor, non-negative cost] pairs, return { distance, path } for the minimum-cost path from start to target. Return null when unreachable. Resolve equal-cost choices by first discovery order.",
+    starter: "function dijkstra(graph, start, target) {\\n  // your code here\\n}",
+    tests: [
+      { input: [{ A: [["B", 4], ["C", 1]], B: [["D", 1]], C: [["B", 2], ["D", 5]], D: [] }, "A", "D"], expected: { distance: 4, path: ["A", "C", "B", "D"] } },
+      { input: [{ A: [["B", 3]], B: [], C: [] }, "A", "C"], expected: null },
+      { input: [{ A: [["B", 2]], B: [] }, "A", "A"], expected: { distance: 0, path: ["A"] } },
+      { input: [{ A: [["B", 1], ["C", 1]], B: [["D", 1]], C: [["D", 1]], D: [] }, "A", "D"], expected: { distance: 2, path: ["A", "B", "D"] } }
+    ]
+  },
+  { id: "lexicographic-topological-sort", skill: "graphs", title: "Lexicographic Topological Sort",
+    desc: "Return the lexicographically smallest topological ordering of a directed acyclic graph represented by an adjacency list. Return [] when the graph contains a cycle. Include every vertex, including isolated ones.",
+    starter: "function topologicalSort(graph) {\\n  // your code here\\n}",
+    tests: [
+      { input: [{ A: ["C", "B"], B: ["D"], C: ["D"], D: [] }], expected: ["A", "B", "C", "D"] },
+      { input: [{ A: [], B: [], C: [] }], expected: ["A", "B", "C"] },
+      { input: [{ A: ["B"], B: ["A"] }], expected: [] },
+      { input: [{}], expected: [] }
+    ]
+  },
+  // ---------- DYNAMIC PROGRAMMING ----------
+  { id: "minimum-coin-change", skill: "dynamic-programming", title: "Minimum Coin Change",
+    desc: "Given positive coin denominations and a non-negative amount, return the fewest coins needed to make the amount. Coins may be reused. Return -1 when the amount is impossible.",
+    starter: "function minCoins(coins, amount) {\\n  // your code here\\n}",
+    tests: [
+      { input: [[1, 2, 5], 11], expected: 3 },
+      { input: [[2], 3], expected: -1 },
+      { input: [[1, 3, 4], 6], expected: 2 },
+      { input: [[1, 5, 10, 25], 0], expected: 0 }
+    ]
+  },
+  { id: "longest-increasing-subsequence", skill: "dynamic-programming", title: "Longest Increasing Subsequence",
+    desc: "Return the length of the longest strictly increasing subsequence. The subsequence need not be contiguous.",
+    starter: "function lisLength(nums) {\\n  // your code here\\n}",
+    tests: [
+      { input: [[10, 9, 2, 5, 3, 7, 101, 18]], expected: 4 },
+      { input: [[0, 1, 0, 3, 2, 3]], expected: 4 },
+      { input: [[7, 7, 7]], expected: 1 },
+      { input: [[]], expected: 0 }
+    ]
+  },
+  { id: "edit-distance", skill: "dynamic-programming", title: "Edit Distance",
+    desc: "Return the Levenshtein distance between two strings using insertion, deletion and substitution, each with cost one.",
+    starter: "function editDistance(a, b) {\\n  // your code here\\n}",
+    tests: [
+      { input: ["kitten", "sitting"], expected: 3 },
+      { input: ["", "abc"], expected: 3 },
+      { input: ["same", "same"], expected: 0 },
+      { input: ["flaw", "lawn"], expected: 2 }
+    ]
+  }
 ];
