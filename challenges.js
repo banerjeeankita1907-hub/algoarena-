@@ -188,8 +188,7 @@ const challenges = [
       { input: [{ A: ["B"], B: ["A"] }], expected: 1 },
       { input: [{}], expected: 0 }
     ]
-  }
-
+  },
   { id: "dijkstra-shortest-path", skill: "graphs", title: "Dijkstra's Shortest Path",
     desc: "Given a directed weighted adjacency list whose edges are [neighbor, non-negative cost] pairs, return { distance, path } for the minimum-cost path from start to target. Return null when unreachable. Resolve equal-cost choices by first discovery order.",
     starter: "function dijkstra(graph, start, target) {\n  // your code here\n}",
